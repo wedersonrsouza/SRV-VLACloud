@@ -17,7 +17,7 @@ services:
       - ./custom_apps:/var/www/html/custom_apps
       - ./config:/var/www/html/config
       - ./data:/var/www/html/data
-      - "/etc/ssl/vlacloud:/etc/ssl/nextcloud"
+      - ./ssl:/etc/ssl/nextcloud"
 
     environment:
       - PUID=1000
