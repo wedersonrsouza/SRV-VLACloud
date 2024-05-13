@@ -22,8 +22,8 @@ echo '
 
                 SSLEngine on
 
-                SSLCertificateFile    /etc/ssl/nextcloud/cert.pem
-                SSLCertificateKeyFile /etc/ssl/nextcloud/key.pem
+                SSLCertificateFile    /etc/ssl/nextcloud/localhost.crt
+                SSLCertificateKeyFile /etc/ssl/nextcloud/localhost.key
 
                 <FilesMatch "\.(cgi|shtml|phtml|php)$">
                                 SSLOptions +StdEnvVars
