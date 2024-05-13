@@ -1,6 +1,6 @@
 services:
   nextcloud:
-    image: nextcloud-ssl
+    image: nextcloud-production
     container_name: nextcloud
     restart: unless-stopped
     networks:
