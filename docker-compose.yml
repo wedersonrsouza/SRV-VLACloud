@@ -1,6 +1,6 @@
 services:
   nextcloud:
-    image: nextcloud-production
+    image: nextcloud:production-apache
     container_name: nextcloud
     restart: unless-stopped
     networks:
