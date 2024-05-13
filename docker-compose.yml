@@ -75,9 +75,9 @@ services:
       - cloud
 
   nginx-proxy:
-    image: 'jc21/nginx-proxy-manager:latest'
+    # image: 'jc21/nginx-proxy-manager:latest'
+    image: 'nginxinc/nginx-unprivileged:stable-alpine'
     container_name: nginx-proxy
-    runAsNonRoot: true
     environment:
       - PUID=1000
       - PGID=1000
