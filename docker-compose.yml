@@ -40,6 +40,7 @@ services:
       - cloud
     volumes:
       - ./nextclouddb:/var/lib/mysql
+      - ./ssl:/etc/ssl/nextcloud
     environment:
       - PUID=1000
       - PGID=1000
