@@ -97,7 +97,7 @@ services:
       - cloud
   elasticsearch:
     #image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
-    image: elasticsearch:latest
+    image: elasticsearch:8.13.4
     container_name: elasticsearch
     networks:
       - cloud
