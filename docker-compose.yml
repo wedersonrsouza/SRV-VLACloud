@@ -8,7 +8,7 @@ services:
     depends_on:
       - nextclouddb
       - redis
-      # - elasticsearch
+      - elasticsearch
     ports:
       - 8081:80
       - 8443:443
@@ -49,22 +49,22 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
 
-  # collabora:
-  #   image: collabora/code
-  #   container_name: collabora
-  #   restart: unless-stopped
-  #   networks:
-  #     - cloud
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=America/Sao_Paulo
-  #     - password=password
-  #     - username=nextcloud
-  #     - domain=example.com
-  #     - extra_params=--o:ssl.enable=true
-  #   ports:
-  #     - 9980:9980
+  collabora:
+    image: collabora/code
+    container_name: collabora
+    restart: unless-stopped
+    networks:
+      - cloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Sao_Paulo
+      - password=password
+      - username=nextcloud
+      - domain=example.com
+      - extra_params=--o:ssl.enable=true
+    ports:
+      - 9980:9980
 
   redis:
     image: redis:alpine
@@ -95,24 +95,24 @@ services:
 
     networks:
       - cloud
-  # elasticsearch:
-  #   #image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
-  #   image: elasticsearch:8.13.3
-  #   networks:
-  #     - cloud
-  #   command: sh -c "bin/elasticsearch-plugin install --batch ingest-attachment; /bin/tini -s /usr/local/bin/docker-entrypoint.sh eswrapper"
-  #   restart: always
-  #   environment:
-  #     - discovery.type=single-node
-  #     - bootstrap.memory_lock=true
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx2048m"
-  #   user: 1000:1000
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
-  #   volumes:
-  #     - ./elasticsearch:/usr/share/elasticsearch/data
+  elasticsearch:
+    #image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
+    image: elasticsearch:8.13.3
+    networks:
+      - cloud
+    command: sh -c "bin/elasticsearch-plugin install --batch ingest-attachment; /bin/tini -s /usr/local/bin/docker-entrypoint.sh eswrapper"
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx2048m"
+    user: 1000:1000
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elasticsearch:/usr/share/elasticsearch/data
 
 networks:
   cloud:
