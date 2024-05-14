@@ -89,7 +89,7 @@ services:
       - '443:443'
     volumes:
       - ./nginx/data:/data
-      - ./nginx/ssl:/etc/ssl/nextcloud
+      - ./nginx/ssl/:/etc/ssl/nextcloud/
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/letsencrypt:/etc/letsencrypt
 
