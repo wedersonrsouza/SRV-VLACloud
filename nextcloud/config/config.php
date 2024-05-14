@@ -37,6 +37,7 @@ $CONFIG = array (
   'dbtype' => 'mysql',
   'version' => '28.0.5.1',
   'overwrite.cli.url' => 'http://10.69.21.247:8081',
+  'overwriteprotocol' => 'https',
   'dbname' => 'nextcloud',
   'dbhost' => 'nextclouddb',
   'dbport' => '',
