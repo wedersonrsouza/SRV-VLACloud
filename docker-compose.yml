@@ -104,7 +104,7 @@ services:
     command: sh -c "/bin/tini -s /usr/local/bin/docker-entrypoint.sh eswrapper"
     restart: always
     environment:
-      - discovery.type=single-node
+      #- discovery.type=single-node
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx2048m"
     user: 1000:1000
@@ -113,7 +113,8 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ./elasticsearch:/usr/share/elasticsearch/data
+      - ./elasticsearch/data/:/usr/share/elasticsearch/data/
+      - ./elasticsearch/logs/:/usr/share/elasticsearch/logs/
 
 networks:
   cloud:
