@@ -97,7 +97,8 @@ services:
       - cloud
   elasticsearch:
     #image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
-    image: elasticsearch:8.13.3
+    image: elasticsearch:latest
+    container_name: elasticsearch
     networks:
       - cloud
     command: sh -c "bin/elasticsearch-plugin install --batch ingest-attachment; /bin/tini -s /usr/local/bin/docker-entrypoint.sh eswrapper"
