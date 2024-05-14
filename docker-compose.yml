@@ -109,6 +109,8 @@ services:
       #- "ES_JAVA_OPTS=-Xms512m -Xmx2048m"
       - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
       #- "xpack.security.transport.ssl.enabled=true"
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=elastic
     user: 1000:1000
     ulimits:
       memlock:
