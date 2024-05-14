@@ -61,7 +61,7 @@ services:
       - TZ=America/Sao_Paulo
       - password=password
       - username=nextcloud
-      - domain=example.com
+      - domain=localhost
       - extra_params=--o:ssl.enable=true
     ports:
       - 9980:9980
