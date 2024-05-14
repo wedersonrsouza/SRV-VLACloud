@@ -51,4 +51,5 @@ $CONFIG = array (
   'installed' => true,
   'default_phone_region' => 'BR',
   'maintenance_window_start' => 1,
+  'force_language' => 'pt_BR',
 );
