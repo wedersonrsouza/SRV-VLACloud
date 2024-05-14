@@ -101,7 +101,7 @@ services:
     container_name: elasticsearch
     networks:
       - cloud
-    command: sh -c "bin/elasticsearch-plugin install --batch ingest-attachment; /bin/tini -s /usr/local/bin/docker-entrypoint.sh eswrapper"
+    command: sh -c "/bin/tini -s /usr/local/bin/docker-entrypoint.sh eswrapper"
     restart: always
     environment:
       - discovery.type=single-node
