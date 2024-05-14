@@ -32,6 +32,7 @@ $CONFIG = array (
   'trusted_domains' => 
   array (
     0 => '10.69.21.247:8081',
+    1 => 'http://192.168.112.5:8081',
   ),
   'datadirectory' => '/var/www/html/data',
   'dbtype' => 'mysql',
