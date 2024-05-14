@@ -49,5 +49,6 @@ $CONFIG = array (
   'dbuser' => 'nextcloud',
   'dbpassword' => 'dbpassword',
   'installed' => true,
-  'default_phone_region' => 'BR'
+  'default_phone_region' => 'BR',
+  'maintenance_window_start' => 1,
 );
