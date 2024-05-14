@@ -104,10 +104,11 @@ services:
     command: sh -c "/bin/tini -s /usr/local/bin/docker-entrypoint.sh eswrapper"
     restart: always
     environment:
-      #- discovery.type=single-node
+      - discovery.type=single-node
       - bootstrap.memory_lock=true
       #- "ES_JAVA_OPTS=-Xms512m -Xmx2048m"
       - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - "xpack.security.transport.ssl.enabled=true"
     user: 1000:1000
     ulimits:
       memlock:
