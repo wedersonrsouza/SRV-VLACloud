@@ -27,11 +27,11 @@ services:
       - MYSQL_PASSWORD=dbpassword
       - MYSQL_HOST=nextclouddb
       - REDIS_HOST=redis
-      - PHP_MEMORY_LIMIT=8G
-      - PHP_UPLOAD_LIMIT=2G
+      - PHP_MEMORY_LIMIT=2048M
+      - PHP_UPLOAD_LIMIT=2048M
       - NEXTCLOUD_MEMORY_LIMIT=8
       - OPCACHE_ENABLE=1
-      - APACHE_BODY_LIMIT=2GB
+      - APACHE_BODY_LIMIT=1073741824
 
   nextclouddb:
     image: mariadb
