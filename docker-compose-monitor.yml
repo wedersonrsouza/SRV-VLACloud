@@ -1,0 +1,71 @@
+version: '3'
+
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    hostname: cadvisor
+    platform: linux/aarch64
+    restart: unless-stopped
+    networks:
+      - cloud
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+      - "/dev/disk/:/dev/disk:ro"
+    ports:
+      - "8080:8080"
+
+  prometheus:
+    image: prom/prometheus
+    hostname: prometheus
+    restart: unless-stopped
+    networks:
+      - cloud
+    volumes:
+      - ./prometheus-scrape-config.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    restart: unless-stopped
+    hostname: grafana
+    networks:
+      - cloud
+    environment:
+      GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: "true"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"
+      GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+    volumes:
+      - ./datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - ./grafana_data:/var/lib/grafana
+    ports:
+      - "9100:3000"
+
+  node_exporter:
+    image: prom/node-exporter:latest
+    hostname: node_exporter
+    restart: unless-stopped
+    networks:
+      - cloud
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/rootfs'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+
+    ports:
+      - 9101:9100
+
+networks:
+  cloud:
+    name: cloud
+    driver: bridge

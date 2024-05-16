@@ -19,8 +19,8 @@ services:
       - ./nextcloud/data:/var/www/html/data
 
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=33
+      - PGID=33
       - TZ=America/Sao_Paulo
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
@@ -30,6 +30,7 @@ services:
       - PHP_MEMORY_LIMIT:2G
       - PHP_UPLOAD_LIMIT:2G
       - NEXTCLOUD_MEMORY_LIMIT=2G
+      - OPCACHE_ENABLE=1
 
   nextclouddb:
     image: mariadb
@@ -48,6 +49,8 @@ services:
       - MYSQL_PASSWORD=dbpassword
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
+      - MYSQLD_INNODB_BUFFER_POOL_SIZE=22G
+      - MYSQLD_INNODB_LOG_FILE_SIZE=5G
 
   collabora:
     image: collabora/code
@@ -69,6 +72,7 @@ services:
   redis:
     image: redis:alpine
     container_name: redis
+    command: redis-server --appendonly yes --maxmemory 4G
     volumes:
       - ./redis/data:/data
     networks:
