@@ -53,4 +53,7 @@ $CONFIG = array (
   'default_phone_region' => 'BR',
   'maintenance_window_start' => 1,
   'force_language' => 'pt_BR',
+  'memories.db.triggers.fcu' => true,
+  'memories.exiftool' => '/var/www/html/custom_apps/memories/bin-ext/exiftool-amd64-glibc',
+  'memories.vod.path' => '/var/www/html/custom_apps/memories/bin-ext/go-vod-amd64',
 );
