@@ -24,6 +24,7 @@ $CONFIG = array (
     'host' => 'redis',
     'password' => '',
     'port' => 6379,
+    'timeout' => 0.0,
   ),
   'upgrade.disable-web' => true,
   'instanceid' => 'ocq1543dg6nl',
